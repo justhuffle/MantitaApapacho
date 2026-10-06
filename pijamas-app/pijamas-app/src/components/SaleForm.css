@@ -1,0 +1,70 @@
+.sale-modal {
+    max-width: 900px;
+}
+
+.sale-items-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sale-item-row {
+    display: grid;
+    grid-template-columns: 1fr 120px 120px 40px;
+    gap: 12px;
+    align-items: end;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+}
+
+.quantity-group input {
+    width: 100%;
+}
+
+.sale-item-price {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-bottom: 10px;
+}
+
+.sale-item-price span {
+    font-size: 13px;
+    color: #777;
+}
+
+.sale-item-price strong {
+    font-size: 16px;
+}
+
+.sale-total {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 0;
+    font-size: 18px;
+}
+
+.sale-total strong {
+    font-size: 28px;
+}
+
+.credit-info {
+    padding: 15px;
+    margin-top: 15px;
+    background: #faf7f2;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+@media (max-width: 700px) {
+    .sale-item-row {
+        grid-template-columns: 1fr;
+    }
+
+    .sale-item-price {
+        padding-bottom: 0;
+    }
+}
