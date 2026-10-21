@@ -48,6 +48,24 @@ function Inventory() {
     setLoading(false);
   };
 
+  // Stock total agrupado por talla
+  const stockBySize = products.reduce((acc, product) => {
+    const variants = product.product_variants || [];
+
+    variants.forEach((variant) => {
+      const size = variant.size || "Sin talla";
+      const stock = Number(variant.stock) || 0;
+
+      if (!acc[size]) {
+        acc[size] = 0;
+      }
+
+      acc[size] += stock;
+    });
+
+    return acc;
+  }, {});
+
   const getStockStatus = (stock, minimumStock) => {
     if (stock === 0) {
       return {
@@ -438,6 +456,8 @@ function Inventory() {
 
       {/* RESUMEN */}
 
+      {/* RESUMEN */}
+
       <div className="inventory-summary">
         <div className="summary-card">
           <span>Productos</span>
@@ -452,6 +472,26 @@ function Inventory() {
               0,
             )}
           </strong>
+        </div>
+      </div>
+
+      {/* STOCK POR TALLA */}
+
+      <div className="stock-by-size">
+        <div className="stock-by-size-header">
+          <div>
+            <h2>Stock por talla</h2>
+            <p>Existencias totales de todas las pijamas.</p>
+          </div>
+        </div>
+
+        <div className="stock-by-size-list">
+          {Object.entries(stockBySize).map(([size, stock]) => (
+            <div key={size} className="size-stock-card">
+              <span>{size}</span>
+              <strong>{stock}</strong>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -476,12 +516,6 @@ function Inventory() {
           <tbody>
             {products.map((product) => {
               const variants = product.product_variants || [];
-
-              // Stock total de todas las variantes
-              const totalStock = variants.reduce(
-                (total, variant) => total + variant.stock,
-                0,
-              );
 
               // Determinar el estado general del producto
               const hasOutOfStock = variants.some(
@@ -574,8 +608,41 @@ function Inventory() {
                   </td>
 
                   {/* STOCK */}
+                  {/* STOCK */}
                   <td>
-                    <strong>{totalStock}</strong>
+                    <div className="product-stock-list">
+                      {Object.entries(
+                        variants.reduce((acc, variant) => {
+                          const size = variant.size || "Sin talla";
+
+                          if (!acc[size]) {
+                            acc[size] = [];
+                          }
+
+                          acc[size].push(variant);
+
+                          return acc;
+                        }, {}),
+                      ).map(([size, sizeVariants]) => (
+                        <div key={size} className="product-stock-size">
+                          <strong>{size}:</strong>
+
+                          <span>
+                            {sizeVariants.map((variant, index) => (
+                              <span key={variant.id}>
+                                {variant.stock}{" "}
+                                {variant.color && (
+                                  <span className="stock-color">
+                                    {variant.color}
+                                  </span>
+                                )}
+                                {index < sizeVariants.length - 1 && " · "}
+                              </span>
+                            ))}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
                   </td>
 
                   {/* COSTO */}

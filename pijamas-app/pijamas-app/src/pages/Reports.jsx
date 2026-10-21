@@ -183,6 +183,11 @@ function Reports() {
         </div>
 
         <div className="report-card">
+          <span>Total invertido</span>
+          <strong>${totalCost.toFixed(2)}</strong>
+        </div>
+
+        <div className="report-card">
           <span>Ganancia</span>
           <strong>${profit.toFixed(2)}</strong>
         </div>

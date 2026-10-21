@@ -541,3 +541,72 @@
         flex: 1;
     }
 }
+
+.stock-by-size {
+    margin-bottom: 24px;
+    padding: 20px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+}
+
+.stock-by-size-header h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #374151;
+}
+
+.stock-by-size-header p {
+    margin: 4px 0 16px;
+    color: #6b7280;
+    font-size: 13px;
+}
+
+.stock-by-size-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.size-stock-card {
+    min-width: 90px;
+    padding: 12px 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    background: #f9fafb;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.size-stock-card span {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.size-stock-card strong {
+    font-size: 20px;
+    color: #374151;
+}
+
+.product-stock-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.product-stock-size {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+    white-space: nowrap;
+}
+
+.product-stock-size strong {
+    color: #374151;
+}
+
+.stock-color {
+    color: #6b7280;
+    font-size: 12px;
+}
